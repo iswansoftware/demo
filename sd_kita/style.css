@@ -1049,6 +1049,7 @@ ul { list-style: none; }
     align-items: flex-start;
     margin-bottom: 16px;
     font-size: .87rem;
+    white-space: nowrap;
 }
 
 .footer-contact-icon { font-size: 1rem; margin-top: 2px; color: var(--primary); flex-shrink: 0; }

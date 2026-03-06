@@ -159,20 +159,45 @@
         font-size: 0.8rem;
         margin-top: 40px;
       }
+
+      .btn-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        background: #1e293b;
+        border: 1px solid #334155;
+        border-radius: 10px;
+        color: #94a3b8;
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition:
+          border-color 0.2s,
+          color 0.2s;
+        margin-bottom: 36px;
+      }
+
+      .btn-back:hover {
+        border-color: #38bdf8;
+        color: #38bdf8;
+      }
     </style>
   </head>
   <body>
     <header>
       <h1>&#128193; Demo Projects</h1>
-      <p>Daftar proyek demo yang tersedia di localhost</p>
+      <!-- <p>Daftar proyek demo yang tersedia</p> -->
     </header>
 
     <div class="container">
+      <a class="btn-back" href="https://iswansoftware.github.io"> &#8592; Kembali ke IswanSoftware </a>
+
       <p class="section-title">Proyek Tersedia</p>
 
       <div class="project-grid">
         <!-- Company Profile IT -->
-        <a class="project-card" href="/demo/company_profile_it/index.html">
+        <a class="project-card" href="/demo/company_profile_it/index.html" target="_blank" rel="noopener">
           <div class="card-icon blue">&#127970;</div>
           <div class="card-name">Company Profile IT</div>
           <div class="card-desc">Website company profile untuk perusahaan teknologi informasi dengan berbagai halaman lengkap.</div>
@@ -189,7 +214,7 @@
         </a>
 
         <!-- SD Kita -->
-        <a class="project-card" href="/demo/sd_kita/index.html">
+        <a class="project-card" href="/demo/sd_kita/index.html" target="_blank" rel="noopener">
           <div class="card-icon green">&#127979;</div>
           <div class="card-name">SD Kita</div>
           <div class="card-desc">Website sekolah dasar lengkap dengan profil, program, berita, galeri, PPDB, dan halaman kontak.</div>
