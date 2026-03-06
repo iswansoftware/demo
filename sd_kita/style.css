@@ -230,6 +230,10 @@ ul { list-style: none; }
     border-radius: 8px !important;
 }
 .nav-btn:hover { background: var(--primary-dark) !important; color: #fff !important; }
+.main-nav .current-menu-item > a.nav-btn {
+    background: var(--primary-dark) !important;
+    color: #fff !important;
+}
 
 .menu-toggle {
     display: none;
