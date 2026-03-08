@@ -1,4 +1,4 @@
-﻿
+
 ﻿<!DOCTYPE html>
 <html lang="id">
 
@@ -10,261 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Raleway:wght@300;400;500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
-    <style type="text/tailwindcss">
-        /* === Base === */
-        body {
-            font-family: 'Raleway', 'Segoe UI', sans-serif;
-            background-color: #faf7f2;
-            color: #2a2a2a;
-            -webkit-font-smoothing: antialiased;
-        }
-        .font-display { font-family: 'Playfair Display', Georgia, serif; }
-        .font-label   { font-family: 'Montserrat', sans-serif; }
-        /* === Primary Nav === */
-        #primary-menu { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; }
-        #primary-menu > .menu-item { position: relative; }
-        #primary-menu > .menu-item > a {
-            display: block; padding: 28px 20px;
-            color: rgba(255,255,255,0.8);
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.7rem; font-weight: 600;
-            letter-spacing: 2px; text-transform: uppercase;
-            text-decoration: none; transition: color 0.3s;
-            position: relative;
-        }
-        #primary-menu > .menu-item > a::after {
-            content: ''; position: absolute;
-            bottom: 22px; left: 20px; right: 20px;
-            height: 1px; background: #c9a96e;
-            transform: scaleX(0); transform-origin: left;
-            transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
-        }
-        #primary-menu > .menu-item > a:hover,
-        #primary-menu > .current-menu-item > a,
-        #primary-menu > .current-page-ancestor > a { color: #e4c891; }
-        #primary-menu > .menu-item > a:hover::after,
-        #primary-menu > .current-menu-item > a::after,
-        #primary-menu > .current-page-ancestor > a::after { transform: scaleX(1); }
-        /* Dropdown */
-        #primary-menu .sub-menu {
-            display: none; position: absolute;
-            top: 100%; left: 0; min-width: 220px;
-            background: #0d1b2a; z-index: 50;
-            flex-direction: column;
-            border-top: 2px solid #c9a96e;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-            list-style: none; padding: 0; margin: 0;
-        }
-        #primary-menu .menu-item-has-children:hover > .sub-menu { display: flex; }
-        #primary-menu .sub-menu .menu-item a {
-            display: block; padding: 12px 22px;
-            color: rgba(255,255,255,0.65);
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.72rem; font-weight: 500;
-            letter-spacing: 1.5px; text-transform: uppercase;
-            text-decoration: none;
-            border-bottom: 1px solid rgba(255,255,255,0.04);
-            transition: color 0.3s;
-        }
-        #primary-menu .sub-menu .menu-item:last-child a { border-bottom: none; }
-        #primary-menu .sub-menu .menu-item a:hover { color: #c9a96e; }
-        /* Mobile nav */
-        @media (max-width: 1023px) {
-            #primary-menu {
-                display: none; flex-direction: column;
-                position: absolute; top: 100%; right: 0;
-                min-width: 250px; background: #0d1b2a;
-                border-top: 2px solid #c9a96e;
-                box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-                z-index: 200;
-            }
-            #primary-menu.toggled { display: flex; }
-            #primary-menu > .menu-item > a {
-                padding: 15px 24px;
-                border-bottom: 1px solid rgba(255,255,255,0.04);
-            }
-            #primary-menu .sub-menu {
-                position: static; box-shadow: none;
-                border-top: none; border-left: 2px solid #c9a96e;
-                margin-left: 20px; display: flex;
-            }
-        }
-        /* === Hero CTA button fill effect === */
-        .hero-cta {
-            position: relative; overflow: hidden;
-            border: 1px solid #c9a96e; padding: 16px 44px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.7rem; font-weight: 600;
-            letter-spacing: 3px; text-transform: uppercase;
-            color: white; text-decoration: none; display: inline-block;
-            transition: color 0.3s;
-        }
-        .hero-cta::before {
-            content: ''; position: absolute; inset: 0;
-            background: #c9a96e; transform: translateX(-100%);
-            transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
-            z-index: 0;
-        }
-        .hero-cta span { position: relative; z-index: 1; }
-        .hero-cta:hover { color: #0c0f1a; text-decoration: none; }
-        .hero-cta:hover::before { transform: translateX(0); }
-        /* === Sidebar Widgets === */
-        .widget {
-            background: white; border-radius: 10px;
-            padding: 28px 30px; margin-bottom: 28px;
-            border: 1px solid #e6ddd0; position: relative;
-            overflow: hidden; box-shadow: 0 2px 12px rgba(12,15,26,0.06);
-        }
-        .widget::before {
-            content: ''; position: absolute;
-            top: 0; left: 0; right: 0; height: 2px;
-            background: linear-gradient(to right, #c9a96e, #e4c891, #c9a96e);
-        }
-        .widget-title {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: 1.05rem; font-weight: 700;
-            color: #0d1b2a; margin-bottom: 16px;
-            padding-bottom: 12px; border-bottom: 1px solid #e6ddd0;
-            display: flex; align-items: center; gap: 10px;
-        }
-        .widget-title::before {
-            content: ''; display: block;
-            width: 3px; height: 18px; background: #c9a96e;
-            border-radius: 2px; flex-shrink: 0;
-        }
-        .widget ul { list-style: none; padding: 0; margin: 0; }
-        .widget ul li { border-bottom: 1px solid #f3ede3; padding: 7px 0; font-size: 0.88rem; }
-        .widget ul li:last-child { border-bottom: none; }
-        .widget ul li a { color: #6b6b6b; text-decoration: none; display: block; transition: color 0.3s, padding-left 0.3s; }
-        .widget ul li a:hover { color: #a07840; padding-left: 6px; }
-        /* === Search Form === */
-        .search-form { display: flex; gap: 8px; }
-        .search-field {
-            flex: 1; padding: 9px 14px; border: 1px solid #e6ddd0;
-            border-radius: 4px; font-family: 'Raleway', sans-serif;
-            font-size: 0.85rem; outline: none; background: #faf7f2;
-            transition: border-color 0.3s;
-        }
-        .search-field:focus { border-color: #c9a96e; }
-        .search-submit {
-            padding: 9px 18px; background: #0d1b2a;
-            color: white; border: none; border-radius: 4px;
-            cursor: pointer; font-family: 'Montserrat', sans-serif;
-            font-size: 0.72rem; letter-spacing: 1px; transition: background 0.3s;
-        }
-        .search-submit:hover { background: #c9a96e; color: #0d1b2a; }
-        /* === WordPress Pagination === */
-        .nav-links { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; }
-        .nav-links .page-numbers {
-            display: inline-flex; align-items: center; justify-content: center;
-            width: 42px; height: 42px; background: white;
-            border: 1px solid #e6ddd0; border-radius: 4px;
-            color: #2a2a2a; font-family: 'Montserrat', sans-serif;
-            font-size: 0.8rem; font-weight: 500; text-decoration: none;
-            transition: all 0.3s;
-        }
-        .nav-links .page-numbers.current,
-        .nav-links .page-numbers:hover { background: #0d1b2a; color: #e4c891; border-color: #0d1b2a; text-decoration: none; }
-        /* === Social Media Icons === */
-        .header-social-icons {
-            display: flex; align-items: center; gap: 12px; margin-left: auto; margin-right: 20px;
-        }
-        .header-social-link {
-            color: rgba(255,255,255,0.45); display: flex; align-items: center;
-            transition: color 0.3s, transform 0.2s;
-        }
-        .header-social-link:hover { color: #c9a96e; transform: translateY(-2px); }
-        .footer-social-icons {
-            display: flex; align-items: center; gap: 14px;
-        }
-        .footer-social-link {
-            color: rgba(255,255,255,0.35); display: flex; align-items: center;
-            transition: color 0.3s, transform 0.2s;
-        }
-        .footer-social-link:hover { color: #c9a96e; transform: translateY(-2px); }
-        /* === Footer Navigation === */
-        .footer-nav-list { list-style: none; padding: 0; margin: 0; }
-        .footer-nav-list li a {
-            color: rgba(255,255,255,0.45); font-size: 0.85rem;
-            text-decoration: none; display: inline-block;
-            padding: 5px 0; transition: color 0.3s, padding-left 0.3s;
-        }
-        .footer-nav-list li a:hover { color: #c9a96e; padding-left: 6px; }
-        /* === Entry Content (the_content) === */
-        .entry-content { line-height: 1.9; }
-        .entry-content h1, .entry-content h2, .entry-content h3,
-        .entry-content h4, .entry-content h5 {
-            font-family: 'Playfair Display', Georgia, serif;
-            color: #0d1b2a; margin-top: 2rem; margin-bottom: 0.75rem;
-        }
-        .entry-content h2 { font-size: 1.6rem; }
-        .entry-content h3 { font-size: 1.3rem; }
-        .entry-content p { margin-bottom: 1.25rem; color: #3a3a3a; }
-        .entry-content a { color: #a07840; transition: color 0.3s; }
-        .entry-content a:hover { color: #c9a96e; }
-        .entry-content ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1.25rem; }
-        .entry-content ol { list-style: decimal; padding-left: 1.5rem; margin-bottom: 1.25rem; }
-        .entry-content li { margin-bottom: 0.4rem; }
-        .entry-content blockquote {
-            border-left: 3px solid #c9a96e; padding: 20px 28px;
-            margin: 28px 0; background: #f3ede3;
-            border-radius: 0 8px 8px 0;
-            font-family: 'Playfair Display', Georgia, serif;
-            font-style: italic; color: #1c2f45; font-size: 1.05rem;
-        }
-        .entry-content img { border-radius: 8px; margin: 1.5rem 0; }
-        .entry-content code { background: #f3ede3; color: #a07840; padding: 2px 6px; border-radius: 3px; font-size: 0.88rem; }
-        .entry-content pre { background: #0d1b2a; color: #e4c891; padding: 20px 24px; border-radius: 8px; overflow-x: auto; margin-bottom: 1.25rem; font-size: 0.87rem; }
-        /* === Page Loader === */
-        #tt-loader {
-            position: fixed; inset: 0; z-index: 9999;
-            background: #0c0f1a;
-            display: flex; flex-direction: column;
-            align-items: center; justify-content: center; gap: 24px;
-            transition: opacity 0.4s ease, visibility 0.4s ease;
-        }
-        #tt-loader.tt-loaded {
-            opacity: 0; visibility: hidden;
-        }
-        .tt-loader-star {
-            color: #c9a96e; font-size: 2.8rem; line-height: 1;
-            animation: tt-spin 1s linear infinite;
-            display: inline-block;
-        }
-        @keyframes tt-spin {
-            from { transform: rotate(0deg); }
-            to   { transform: rotate(360deg); }
-        }
-        .tt-loader-brand {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: 1.5rem; font-weight: 700;
-            letter-spacing: 2px; color: #fff;
-            animation: tt-fade-in 0.5s ease forwards;
-            opacity: 0;
-        }
-        .tt-loader-brand span { color: #c9a96e; }
-        @keyframes tt-fade-in {
-            to { opacity: 1; }
-        }
-        .tt-loader-bar-wrap {
-            width: 160px; height: 2px;
-            background: rgba(201,169,110,0.2);
-            border-radius: 2px; overflow: hidden;
-        }
-        .tt-loader-bar {
-            height: 100%; width: 0;
-            background: linear-gradient(90deg, #c9a96e, #e4c891);
-            border-radius: 2px;
-            animation: tt-bar 0.7s ease forwards;
-        }
-        @keyframes tt-bar {
-            0%   { width: 0%; }
-            60%  { width: 75%; }
-            100% { width: 100%; }
-        }
-        /* hide scrollbar during load */
-        body.tt-loading { overflow: hidden; }
-    </style>
+    <link rel="stylesheet" href="assets/css/style.min.css">
     <title>Yogyakarta &#8211; Tour and Travel</title>
 <meta name='robots' content='noindex, nofollow' />
 <link rel="icon" href="#" type="image/svg+xml">
@@ -311,25 +57,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 
 <link rel='stylesheet' id='tourandtravel-style-css' href='#' media='all' />
 <script src="https://cdn.tailwindcss.com" id="tailwindcss-js"></script>
-<script id="tailwindcss-js-after">
-tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        "gold":       "#c9a96e",
-                        "gold-light": "#e4c891",
-                        "gold-dark":  "#a07840",
-                        "navy":       "#0d1b2a",
-                        "navy-dark":  "#0c0f1a",
-                        "cream":      "#faf7f2",
-                        "ivory":      "#f3ede3"
-                    }
-                }
-            }
-        };
-    
-//# sourceURL=tailwindcss-js-after
-</script>
+    <script src="assets/js/main.min.obfuscated.js"></script>
 <link rel="https://api.w.org/" href="index.html" /><link rel="alternate" title="JSON" type="application/json" href="index.html" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="index.html" />
 <meta name="generator" content="WordPress 6.9.1" />
 <link rel="canonical" href="destinasi-yogyakarta.html" />
@@ -345,28 +73,7 @@ tailwind.config = {
             <div class="tt-loader-bar"></div>
         </div>
     </div>
-    <script>
-        (function() {
-            function hideLoader() {
-                var l = document.getElementById('tt-loader');
-                if (!l) return;
-                l.classList.add('tt-loaded');
-                document.body.classList.remove('tt-loading');
-                setTimeout(function() {
-                    l.style.display = 'none';
-                }, 420);
-            }
-            if (document.readyState === 'complete') {
-                setTimeout(hideLoader, 200);
-            } else {
-                window.addEventListener('load', function() {
-                    setTimeout(hideLoader, 200);
-                });
-                setTimeout(hideLoader, 2500);
-            }
-        })();
-    </script>
-    <div id="page" class="flex flex-col min-h-screen bg-[#faf7f2]">
+        <div id="page" class="flex flex-col min-h-screen bg-[#faf7f2]">
         <!-- ==================== HEADER ==================== -->
         <header id="masthead" role="banner"
             class="sticky top-0 z-50 bg-[#0c0f1a] border-b border-[#c9a96e]/20"
@@ -709,24 +416,6 @@ tailwind.config = {
 const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(window._wpemojiSettings=a,"wpEmojiSettingsSupports"),s=["flag","emoji"];function i(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function c(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0);const a=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);return t.every((e,t)=>e===a[t])}function p(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var n=e.getImageData(16,16,1,1);for(let e=0;e<n.data.length;e++)if(0!==n.data[e])return!1;return!0}function u(e,t,n,a){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\udde8\ud83c\uddf6","\ud83c\udde8\u200b\ud83c\uddf6")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!a(e,"\ud83e\u1fac8")}return!1}function f(e,t,n,a){let r;const o=(r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):document.createElement("canvas")).getContext("2d",{willReadFrequently:!0}),s=(o.textBaseline="top",o.font="600 32px Arial",{});return e.forEach(e=>{s[e]=t(o,e,n,a)}),s}function r(e){var t=document.createElement("script");t.src=e,t.defer=!0,document.head.appendChild(t)}a.supports={everything:!0,everythingExceptFlag:!0},new Promise(t=>{let n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),c.toString(),p.toString()].join(",")+"));",a=new Blob([e],{type:"text/javascript"});const r=new Worker(URL.createObjectURL(a),{name:"wpTestEmojiSupports"});return void(r.onmessage=e=>{i(n=e.data),r.terminate(),t(n)})}catch(e){}i(n=f(s,u,c,p))}t(n)}).then(e=>{for(const n in e)a.supports[n]=e[n],a.supports.everything=a.supports.everything&&a.supports[n],"flag"!==n&&(a.supports.everythingExceptFlag=a.supports.everythingExceptFlag&&a.supports[n]);var t;a.supports.everythingExceptFlag=a.supports.everythingExceptFlag&&!a.supports.flag,a.supports.everything||((t=a.source||{}).concatemoji?r(t.concatemoji):t.wpemoji&&t.twemoji&&(r(t.twemoji),r(t.wpemoji)))});
 //# sourceURL=#
 </script>
-        <script id="tourandtravel-navigation-js">
-(function(){
-  var btn = document.querySelector('.menu-toggle');
-  var menu = document.getElementById('primary-menu');
-  if(!btn || !menu) return;
-  btn.addEventListener('click', function(){
-    var expanded = btn.getAttribute('aria-expanded') === 'true';
-    btn.setAttribute('aria-expanded', String(!expanded));
-    menu.classList.toggle('toggled');
-  });
-  document.addEventListener('click', function(e){
-    if(!btn.contains(e.target) && !menu.contains(e.target)){
-      menu.classList.remove('toggled');
-      btn.setAttribute('aria-expanded', 'false');
-    }
-  });
-})();
-</script>
-</body>
+        </body>
 
         </html>
